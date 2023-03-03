@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Encriptador</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="index.css">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+
+        <header>
+            <div class="seccionlogo"><img src="imagenes/Logo.png" class="logo"></div>
+        </header>
+
+        <main>
+            <section class="area-texto">
+                <textarea class="zona-encriptado" placeholder="Introduce aquí el texto que deseas encriptar."></textarea>
+            </section>
+            <section class="aviso">
+                <p>Escribe solo con minúsculas y no uses acentos.</p> 
+            </section>
+            <section class="botones">
+                <input type="submit" value="Encriptar" class="boton-encriptar">
+                <input type="submit" value="Desencriptar" class="boton-desencriptar">
+            </section>
+            <div class="rectangulo-blanco"></div>
+            <section class="texto-noencontrado">
+                <img src="imagenes/Muñeco.png" class="muñeco">
+                <div class="sintexto">
+                    <p class="mensaje1">Ningún mensaje fue encontrado</p>
+                    <p class="mensaje2">Ingresa el texto que deseas encriptar o desencriptar.</p>
+                </div>
+            </section>
+            <section>
+                <textarea cols="20" rows="8" class="texto-procesado"></textarea>
+                <button class="boton-copiar" onclick="copiar()">Copiar</button>
+            </section>
+
+        </main>
+        <footer>          
+        </footer>
+
+        <script>
+            
+            var botonEncriptar = document.querySelector(".boton-encriptar");
+            var botonDesencriptar = document.querySelector(".boton-desencriptar");
+                      
+            //Funciones para encriptar y desencriptar
+            //a=ai;e=enter;i=imes;o=ober;u=ufat
+
+            function encriptar(){
+                var textoListo = document.querySelector(".zona-encriptado").value;
+                var zonaSinTexto = document.querySelector(".texto-noencontrado");
+                var textoProcesado = document.querySelector(".texto-procesado");
+                               
+                textoProcesado.innerHTML = textoListo.replaceAll("e","enter").replaceAll("i","imes").replaceAll("a","ai").replaceAll("o","ober").replaceAll("u","ufat");
+                zonaSinTexto.classList.add("hidden");
+
+            }
+
+            function desencriptar(){
+                var textoListo = document.querySelector(".zona-encriptado").value;
+                var zonaSinTexto = document.querySelector(".texto-noencontrado");
+                var textoProcesado = document.querySelector(".texto-procesado");
+
+                textoProcesado.innerHTML = textoListo.replaceAll("enter","e").replaceAll("imes","i").replaceAll("ai","a").replaceAll("ober","o").replaceAll("ufat","u");
+                zonaSinTexto.classList.add("hidden");
+            }
+
+            function copiar(){
+                var textoCopiado = document.querySelector(".texto-procesado");
+                textoCopiado.select()
+                navigator.clipboard.writeText(textoCopiado.value);
+            }
+            
+            botonEncriptar.onclick = encriptar;
+            botonDesencriptar.onclick = desencriptar;
+            
+        </script>
+
+    </body>
+
+
+</html>
+
+
+
+
